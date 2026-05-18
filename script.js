@@ -1,91 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Vantedge IT Systems for managed IT support, cybersecurity, cloud, and infrastructure planning.">
-  <title>Contact | Vantedge IT Systems</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="site-header">
-    <a class="brand" href="index.html"><span class="brand-mark">V</span><span>Vantedge IT Systems</span></a>
-    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="about.html">About</a>
-      <a class="nav-cta" href="contact.html" aria-current="page">Contact</a>
-    </nav>
-  </header>
+const navToggle = document.querySelector(".nav-toggle");
+const siteNav = document.querySelector(".site-nav");
 
-  <main>
-    <section class="page-hero contact-hero">
-      <div>
-        <p class="eyebrow">Contact</p>
-        <h1>Tell us what your IT environment needs next.</h1>
-        <p>Share a few details and Vantedge will follow up to discuss support, security, cloud, or infrastructure priorities.</p>
-      </div>
-      <div class="contact-details">
-        <a href="mailto:hello@vantedgeit.com">hello@vantedgeit.com</a>
-        <a href="tel:+15550193583">(555) 019-3583</a>
-        <span>Monday-Friday, 8:00 AM-6:00 PM</span>
-      </div>
-    </section>
+if (navToggle && siteNav) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = siteNav.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
 
-    <section class="section contact-layout">
-      <form class="contact-form" action="mailto:hello@vantedgeit.com" method="post" enctype="text/plain">
-        <label>
-          Name
-          <input name="name" type="text" autocomplete="name" required>
-        </label>
-        <label>
-          Email
-          <input name="email" type="email" autocomplete="email" required>
-        </label>
-        <label>
-          Company
-          <input name="company" type="text" autocomplete="organization">
-        </label>
-        <label>
-          What can we help with?
-          <select name="service">
-            <option>Managed IT support</option>
-            <option>Cybersecurity review</option>
-            <option>Cloud services</option>
-            <option>Network infrastructure</option>
-            <option>Backup and continuity</option>
-            <option>General consultation</option>
-          </select>
-        </label>
-        <label class="full">
-          Message
-          <textarea name="message" rows="6" required></textarea>
-        </label>
-        <button class="button primary" type="submit">Send message</button>
-        <p class="form-note" role="status" aria-live="polite"></p>
-      </form>
+  siteNav.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      siteNav.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+}
 
-      <aside class="contact-panel">
-        <h2>Good first-call topics</h2>
-        <ul>
-          <li>Current support model and response expectations</li>
-          <li>Security gaps or recent incidents</li>
-          <li>Cloud migration or Microsoft 365 administration</li>
-          <li>Backup status and recovery requirements</li>
-          <li>Upcoming office, hiring, or infrastructure changes</li>
-        </ul>
-      </aside>
-    </section>
-  </main>
+const contactForm = document.querySelector(".contact-form");
 
-  <footer class="site-footer">
-    <span>&copy; 2026 Vantedge IT Systems. All rights reserved.</span>
-    <a href="services.html">Services</a>
-  </footer>
-  <script src="script.js"></script>
-</body>
-</html>
+if (contactForm) {
+  contactForm.addEventListener("submit", () => {
+    const note = contactForm.querySelector(".form-note");
+    if (note) {
+      note.textContent = "Opening your email client with the message details.";
+    }
+  });
+}
+
+const pinChatbaseWidget = () => {
+  const placements = [
+    ["chatbase-bubble-button", "24px"],
+    ["chatbase-message-bubbles", "24px"],
+    ["chatbase-bubble-window", "92px"]
+  ];
+
+  placements.forEach(([id, bottom]) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    element.style.position = "fixed";
+    element.style.right = "24px";
+    element.style.bottom = bottom;
+    element.style.zIndex = "2147483647";
+  });
+};
+
+window.addEventListener("load", () => {
+  pinChatbaseWidget();
+  window.setInterval(pinChatbaseWidget, 1200);
+});
