@@ -43,11 +43,24 @@
 
 <input type="hidden" name="access_key" value="86e4ff16-e98f-4b24-b2ce-cff3684e85a2">
 
-<input type="text" name="name" required>
-<input type="email" name="email" required>
-<textarea name="message" required></textarea>
+<label>
+  Name
+  <input name="name" type="text" autocomplete="name" required>
+</label>
 
-<button type="submit">Send message</button>
+<label>
+  Email
+  <input name="email" type="email" autocomplete="email" required>
+</label>
+
+<label class="full">
+  Message
+  <textarea name="message" rows="6" required></textarea>
+</label>
+
+<button class="button primary" type="submit">Send message</button>
+
+</form>
          
       </form>
 
